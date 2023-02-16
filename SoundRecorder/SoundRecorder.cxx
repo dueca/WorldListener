@@ -222,7 +222,7 @@ static void audiocallback(void* mod, Uint8* data, int len)
 void SoundRecorder::cbAudio(Uint8* data, int len)
 {
   sf_count_t count = sf_write_short
-    (sndfile, reinterpret_cast<short int*>(data), len/bytes_per_point);
+    (sndfile, reinterpret_cast<short int*>(data), len/sizeof(short int));
   sample_count += len/bytes_per_point;
 }
 
