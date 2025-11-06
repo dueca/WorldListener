@@ -14,6 +14,7 @@
 #include "OpenALListener.hxx"
 #include <debug.h>
 #include "../WorldListener/AudioExceptions.hxx"
+#include "OpenALObjectFactory.hxx"
 
 OPEN_NS_WORLDLISTENER;
 
@@ -164,5 +165,10 @@ const std::string& OpenALObject::getChannelClass()
   const static std::string empty("");
   return empty;
 }
+
+static auto *maker = new
+  SubContractor<OpenALObjectTypeKey, OpenALObject>
+  ("static");
+
 
 CLOSE_NS_WORLDLISTENER;

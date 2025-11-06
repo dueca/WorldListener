@@ -88,8 +88,11 @@ const ParameterTable* OpenALListener_DUECA::getParameterTable()
       "  DCO classname (all objects look like this) or DCO classname+label\n"
       "- Object name, if not empty, overrides the name given in the label\n"
       "  use # to add an entry number to the name\n"
-      "- Sound object class name, must be defined in the factory\n"
-      "- Sound file name[s]\n" },
+      "- Sound object type, must be defined in the factory, currently available\n"
+      "  'static', 'static_controlled', 'moving_controlled', you may\n"
+      "  add 'looping' to specify looping sounds, and 'relative' to fix the\n"
+      "  sound relative to the observer, separated by a space.\n"
+      "- Sound file name\n" },
 
     { "add-object-class-coordinates",
       new MemberCall<_ThisObject_,std::vector<double> >
@@ -220,7 +223,7 @@ bool OpenALListener_DUECA::addStaticSound(const std::vector<std::string>&
     return false;
   }
   spec.name = names[0];
-  spec.type = "static";
+  spec.type = "static constant";
   spec.filename.resize(0);
   spec.filename.push_back(names[1]);
   spec.coordinates.resize(0);
@@ -272,7 +275,7 @@ bool OpenALListener_DUECA::setCoordinates(const std::vector<double>& coords)
 bool OpenALListener_DUECA::addObjectClassData
 (const std::vector<std::string>& names)
 {
-  if (names.size() < 3) {
+  if (names.size() < 4) {
     E_CNF("Specify a match string for creation, class name, factory type and"
           << " sound file");
     return false;

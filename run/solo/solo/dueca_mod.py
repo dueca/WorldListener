@@ -109,14 +109,19 @@ if this_node_id == ecs_node:
             ('set-listener',
              dueca.OpenALListener().param(
                  ('set-devicename', "Xonar DX, Multichannel (CARD=DX,DEV=0)"),
+
+                 # new-style specification. Sound is created when a
+                 # matching entry is found in the channel.
+                 # moving_controlled factory lable, relative to observer
                  ('add-object-class-data', (
                      "AudioObjectMotion:mosquito", "mosquito #",
-                     "OpenALObjectMoving", "mosquito.wav")),
+                     "moving_controlled relative", "mosquito.wav")),
                  # coordinates are x/y/z, u/v/w, volume, pitch
                  ('add-object-class-coordinates', (
                      0, 0, 0, 0, 0, 0, 0.99, 1.0)),
 
-                 # old style hacks, link to the label
+                 # old style hacks, link to the label only
+                 # and AudioObjectFixed class
                  ('add-controlled-static-sound', (
                      "rpm1left", "PA34_rpm1_left.wav")),
                  ( 'set-coordinates', ( 0, -2, 0, 0, 0, 0)),

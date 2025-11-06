@@ -23,7 +23,7 @@
 // include the debug writing header. Warning and error messages
 // are on by default, debug and info can be selected by
 // uncommenting the respective defines
-//#define D_MOD
+// #define D_MOD
 #define I_MOD
 #include <debug.h>
 
@@ -44,9 +44,7 @@ OpenALListener::OpenALListener() :
   distance_model(AL_INVERSE_DISTANCE_CLAMPED),
   allow_unknown(false),
   buffermanager(new OpenALBufferManager())
-{
-
-}
+{}
 
 bool OpenALListener::init()
 {
@@ -66,19 +64,6 @@ bool OpenALListener::init()
   device = alcOpenDevice(devicename.size() ? devicename.c_str() : NULL);
   if (device == NULL) {
     E_MOD("Cannot open audio device " << devicename);
-#if 0
-    // enumerate possible devices
-    ALboolean enumeration = alcIsExtensionPresent(NULL, "ALC_ENUMERATION_EXT");
-    if (enumeration == AL_TRUE) {
-      cerr << "OpenAL devices:" << endl;
-      const ALCchar *device = alcGetString(NULL, ALC_DEVICE_SPECIFIER);
-      while (device && device[0] != '\0') {
-        cerr << device << endl;
-        size_t len = strlen(device);
-        device += len + 1;
-      }
-    }
-#endif
     return false;
   }
   else {
@@ -116,16 +101,16 @@ bool OpenALListener::init()
   return true;
 }
 
-void OpenALListener::setBase(const BaseObjectMotion& listener)
+void OpenALListener::setBase(const BaseObjectMotion &listener)
 {
-  Eigen::Matrix<double,3,3> orimat;
+  Eigen::Matrix<double, 3, 3> orimat;
   listener.orientationToR(orimat);
 
-  for (unsigned ii = 3; ii--; ) {
+  for (unsigned ii = 3; ii--;) {
     xyz[ii] = listener.xyz[ii];
     uvw[ii] = listener.uvw[ii];
-    ori[ii] = orimat(ii,0);
-    ori[ii+3] = orimat(ii,2);
+    ori[ii] = orimat(ii, 0);
+    ori[ii + 3] = orimat(ii, 2);
   }
   if (device) {
     // update position, vel and orientation
@@ -142,11 +127,10 @@ OpenALListener::~OpenALListener()
   alcCloseDevice(device);
 }
 
-bool OpenALListener::createControllable
-  (const GlobalId& master_id, const NameSet& cname, entryid_type entry_id,
-   uint32_t creation_id, const std::string& data_class,
-   const std::string& entry_label,
-   Channel::EntryTimeAspect time_aspect)
+bool OpenALListener::createControllable(
+  const GlobalId &master_id, const NameSet &cname, entryid_type entry_id,
+  uint32_t creation_id, const std::string &data_class,
+  const std::string &entry_label, Channel::EntryTimeAspect time_aspect)
 {
   try {
     // check for a "pre-cooked" entry
@@ -169,10 +153,17 @@ bool OpenALListener::createControllable
     // not found, create entry on the basis of data class and entry label
     I_MOD("creating for sound class " << entry_label << " entry " << entry_id);
     boost::intrusive_ptr<OpenALObject> op;
-    WorldDataSpec obj = retrieveFactorySpec
-      (data_class, entry_label, creation_id);
+    WorldDataSpec obj =
+      retrieveFactorySpec(data_class, entry_label, creation_id);
     I_MOD("creating with data " << obj);
-    op = OpenALObjectFactory::instance().create(obj.type, obj);
+
+    // use the first word of the type as factory key
+    auto wsidx = obj.type.find(" ");
+    auto _key = obj.type;
+    if (wsidx != std::string::npos)
+      _key = obj.type.substr(0, wsidx - 1);
+
+    op = OpenALObjectFactory::instance().create(_key, obj);
     op->connect(master_id, cname, entry_id, time_aspect);
     if (context) {
       alcMakeContextCurrent(context);
@@ -181,27 +172,27 @@ bool OpenALListener::createControllable
     controlled_sources[creation_id] = op;
     return true;
   }
-  catch (const CFCannotMake& problem) {
+  catch (const CFCannotMake &problem) {
     if (!allow_unknown) {
-      W_MOD("OpenALListener: factory cannot create for " << data_class <<
-            " encountered: " <<  problem.what());
+      W_MOD("OpenALListener: factory cannot create for "
+            << data_class << " encountered: " << problem.what());
       throw(problem);
     }
-    W_MOD("OpenALListener: factory cannot create for " << data_class <<
-          ", ignoring this entry");
+    W_MOD("OpenALListener: factory cannot create for "
+          << data_class << ", ignoring this entry");
   }
-  catch (const MapSpecificationError& problem) {
+  catch (const MapSpecificationError &problem) {
     if (!allow_unknown) {
-      W_MOD("OpenALListener: not configured for " << data_class <<
-            " encountered: " <<  problem.what());
+      W_MOD("OpenALListener: not configured for "
+            << data_class << " encountered: " << problem.what());
       throw(problem);
     }
-    W_MOD("OpenALListener: not configured for " << data_class <<
-          ", ignoring this entry");
+    W_MOD("OpenALListener: not configured for " << data_class
+                                                << ", ignoring this entry");
   }
-  catch (const std::exception& problem) {
-    W_MOD("OpenALListener: when trying to create for " << data_class <<
-          " encountered: " <<  problem.what());
+  catch (const std::exception &problem) {
+    W_MOD("OpenALListener: when trying to create for "
+          << data_class << " encountered: " << problem.what());
     throw(problem);
   }
   return false;
@@ -216,8 +207,7 @@ void OpenALListener::addConstantSource(boost::intrusive_ptr<OpenALObject> op)
   other_sources.push_back(op);
 }
 
-void OpenALListener::
-addControlledSource(boost::intrusive_ptr<OpenALObject> op)
+void OpenALListener::addControlledSource(boost::intrusive_ptr<OpenALObject> op)
 {
   named_objects_t::key_type key(op->getChannelClass(), op->getName());
   if (named_objects.find(key) == named_objects.end()) {
@@ -233,7 +223,7 @@ void OpenALListener::removeControllable(uint32_t creation_id)
   controlled_sources.erase(creation_id);
 }
 
-void OpenALListener::iterate(const TimeSpec& ts)
+void OpenALListener::iterate(const TimeSpec &ts)
 {
   alcMakeContextCurrent(context);
   for (controllables_t::iterator ii = controlled_sources.begin();
@@ -246,7 +236,7 @@ void OpenALListener::iterate(const TimeSpec& ts)
   }
 }
 
-void OpenALListener::silence(const TimeSpec& ts)
+void OpenALListener::silence(const TimeSpec &ts)
 {
   alcMakeContextCurrent(context);
   for (controllables_t::iterator ii = controlled_sources.begin();
