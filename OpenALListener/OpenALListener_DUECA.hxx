@@ -118,6 +118,9 @@ private:
   /** Add the data for a new type */
   bool addObjectClassData(const std::vector<std::string> &names);
 
+  /** Specify sound coordinates */
+  //bool addCoordinates(const std::vector<double> &coords);
+
   /** Create new controlled moving sound */
   bool addControlledMovingSound(const std::vector<std::string> &names);
 

@@ -94,7 +94,7 @@ const ParameterTable* OpenALListener_DUECA::getParameterTable()
       "  sound relative to the observer, separated by a space.\n"
       "- Sound file name\n" },
 
-    { "add-object-class-coordinates",
+/*    { "add-object-class-coordinates",
       new MemberCall<_ThisObject_,std::vector<double> >
       (&_ThisObject_::addCoordinates),
       "optionally add coordinates to the latest created objectclass with\n"
@@ -103,11 +103,12 @@ const ParameterTable* OpenALListener_DUECA::getParameterTable()
       "Defaults given in parentheses:\n"
       "* base coordinates: x, y, z (0,0,0)\n"
       "* velocity:         u, v, w (0,0,0)\n"
-      "* sound properties: volume (0, range 0-1), relative pitch (1.0)\n"
+      "* sound properties: volume (1, range 0-1), relative pitch (1.0)\n"
       "* distance effects: ref dist (1), max dist (flt_max), rollof factor(1)\n"
       "* cone definition: phi, theta, psi direction,\n"
       "                   cone inner, cone outer, cone gain\n"
     },
+    */
 
     { "set-coordinates",
       new MemberCall<_ThisObject_,std::vector<double> >
