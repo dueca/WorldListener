@@ -37,14 +37,14 @@ USING_DUECA_NS;
 
     \verbinclude port-audio-test.scm
  */
-class AudioTestGui: public Module
+class AudioTestGui: public dueca::Module
 {
   /** self-define the module type, to ease writing the parameter table */
   typedef AudioTestGui _ThisModule_;
 
 private: // simulation data
   // declare the data you need in your simulation
-  struct PATestUnit: public AssociateObject<AudioTestGui>
+  struct PATestUnit: public dueca::AssociateObject<AudioTestGui>
   {
     /** Name, identification */
     std::string          name;
@@ -62,15 +62,15 @@ private: // simulation data
     float                pitch;
 
     /** Token to write */
-    ChannelWriteToken    w_test;
+    dueca::ChannelWriteToken    w_test;
 
     /** Token for new file, if applicable */
-    boost::scoped_ptr<ChannelWriteToken> w_newfile;
+    boost::scoped_ptr<dueca::ChannelWriteToken> w_newfile;
 
-    /** Callback function */
+    /** dueca::Callback function */
     void changeVolume(GtkRange* w, gpointer p);
 
-    /** Callback function */
+    /** dueca::Callback function */
     void changePitch(GtkRange* w, gpointer p);
 
     /** New file selection */
@@ -103,22 +103,22 @@ private: // activity allocation
       generally better to trigger on the incoming channels */
   //PeriodicAlarm        myclock;
 
-  /** Callback object for simulation calculation. */
-  Callback<AudioTestGui>  cb1;
+  /** dueca::Callback object for simulation calculation. */
+  dueca::Callback<AudioTestGui>  cb1;
 
   /** Activity for simulation calculation. */
-  ActivityCallback      do_calc;
+  dueca::ActivityCallback      do_calc;
 
 public: // class name and trim/parameter tables
   /** Name of the module. */
   static const char* const           classname;
 
   /** Return the parameter table. */
-  static const ParameterTable*       getMyParameterTable();
+  static const dueca::ParameterTable*       getMyParameterTable();
 
 public: // construction and further specification
   /** Constructor. Is normally called from scheme/the creation script. */
-  AudioTestGui(Entity* e, const char* part, const PrioritySpec& ts);
+  AudioTestGui(dueca::Entity* e, const char* part, const dueca::PrioritySpec& ts);
 
   /** Continued construction. This is called after all script
       parameters have been read and filled in, according to the
@@ -138,7 +138,7 @@ public: // construction and further specification
   // Delete if not needed!
 
   /** Specify a time specification for the simulation activity. */
-  bool setTimeSpec(const TimeSpec& ts);
+  bool setTimeSpec(const dueca::TimeSpec& ts);
 
   /** Request check on the timing. */
   bool checkTiming(const std::vector<int>& i);
@@ -151,14 +151,14 @@ public: // member functions for cooperation with DUECA
   bool isPrepared();
 
   /** start responsiveness to input data. */
-  void startModule(const TimeSpec &time);
+  void startModule(const dueca::TimeSpec &time);
 
   /** stop responsiveness to input data. */
-  void stopModule(const TimeSpec &time);
+  void stopModule(const dueca::TimeSpec &time);
 
 public: // the member functions that are called for activities
   /** the method that implements the main calculation. */
-  void doCalculation(const TimeSpec& ts);
+  void doCalculation(const dueca::TimeSpec& ts);
 };
 
 #endif

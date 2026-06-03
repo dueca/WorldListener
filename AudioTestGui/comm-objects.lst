@@ -3,5 +3,7 @@
 # specify these with the .dco extension, examples:
 # WorldListener/comm-objects/MyDataObject.dco
 # Generic/comm-objects/PrimaryControls.dco
-WorldListener/comm-objects/AudioObjectFixed.dco
-WorldListener/comm-objects/AudioFileSelection.dco
+#WorldListener/comm-objects/AudioObjectFixed.dco #  Removed for Policy: 'home-dco':'24-001'
+#WorldListener/comm-objects/AudioFileSelection.dco #  Removed for Policy: 'home-dco':'24-001'
+comm-objects/AudioObjectFixed.dco  # Added for Policy: 'home-dco':'24-001'
+comm-objects/AudioFileSelection.dco  # Added for Policy: 'home-dco':'24-001'

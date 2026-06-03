@@ -76,7 +76,7 @@ protected:
   std::vector<float> base_volumes;
 
   /** Optional channel for selection of new audio file */
-  boost::scoped_ptr<ChannelReadToken>      r_newfile;
+  boost::scoped_ptr<dueca::ChannelReadToken>      r_newfile;
 
   /** New buffer with audio play data */
   volatile PortAudioBufferManager::buffer_ptr_t next_buffer;
@@ -107,18 +107,18 @@ public:
   virtual bool initSound(PortAudioListener* master);
 
   /** Play, update, recalculate, etc. */
-  virtual void iterate(const TimeSpec& ts, const BaseObjectMotion& base);
+  virtual void iterate(const dueca::TimeSpec& ts, const BaseObjectMotion& base);
 
   /** Pass data for playing on the card. */
   virtual void addData(float* out, unsigned frameCount);
 
   /** Connect to a channel entry
       @param master_id ID for opening a channel reader
-      @param cname     Channel with object data
+      @param cname     dueca::Channel with object data
       @param entry_id  Entry in the channel */
-  void connect(const GlobalId& master_id, const NameSet& cname,
-               entryid_type entry_id,
-               Channel::EntryTimeAspect time_aspect) override;
+  void connect(const dueca::GlobalId& master_id, const dueca::NameSet& cname,
+               dueca::entryid_type entry_id,
+               dueca::Channel::EntryTimeAspect time_aspect) override;
 };
 
 CLOSE_NS_WORLDLISTENER;

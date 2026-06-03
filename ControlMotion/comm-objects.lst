@@ -2,8 +2,10 @@
 # specific module
 # specify these with the .dco extension, examples:
 #WorldListener/comm-objects/BaseObjectMotion.dco #  Removed for Policy: 'replace-worldview-dco-motion':'21-001'
-WorldListener/comm-objects/AudioObjectMotion.dco
-WorldListener/comm-objects/AudioObjectFixed.dco
+#WorldListener/comm-objects/AudioObjectMotion.dco #  Removed for Policy: 'home-dco':'24-001'
+#WorldListener/comm-objects/AudioObjectFixed.dco #  Removed for Policy: 'home-dco':'24-001'
 # Generic/comm-objects/PrimaryControls.dco
 
 WorldView/comm-objects/BaseObjectMotion.dco  # Added for Policy: 'replace-worldview-dco-motion':'21-001'
+comm-objects/AudioObjectMotion.dco  # Added for Policy: 'home-dco':'24-001'
+comm-objects/AudioObjectFixed.dco  # Added for Policy: 'home-dco':'24-001'

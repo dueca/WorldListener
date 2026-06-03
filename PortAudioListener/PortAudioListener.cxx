@@ -32,6 +32,7 @@
 
 #define DO_INSTANTIATE
 USING_DUECA_NS;
+using namespace std;
 
 OPEN_NS_WORLDLISTENER;
 
@@ -265,7 +266,7 @@ void PortAudioListener::iterate(const TimeSpec& ts)
     }
     sound_off = false;
   }
-    
+
   for (controllables_t::iterator ii = controlled_sources.begin();
        ii != controlled_sources.end(); ii++) {
     ii->second->iterate(ts, listener);
@@ -286,7 +287,7 @@ void PortAudioListener::silence(const TimeSpec& ts)
     }
     sound_off = true;
   }
-  
+
   for (controllables_t::iterator ii = controlled_sources.begin();
        ii != controlled_sources.end(); ii++) {
     ii->second->silence();

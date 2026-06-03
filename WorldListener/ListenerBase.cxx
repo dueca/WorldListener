@@ -4,8 +4,8 @@
 	from template   : DuecaModuleTemplate.cxx
         template made by: Rene van Paassen
         date            : Sat Nov 11 23:12:08 2017
-	category        : body file 
-        description     : 
+	category        : body file
+        description     :
 	changes         : Sat Nov 11 23:12:08 2017 first version
 	template changes: 030401 RvP Added template creation comment
         language        : C++
@@ -18,6 +18,7 @@
 #include "ListenerBase.hxx"
 #include "WorldObjectBase.hxx"
 OPEN_NS_WORLDLISTENER;
+using namespace dueca;
 
 // constructor
 ListenerBase::ListenerBase()
@@ -48,7 +49,7 @@ void ListenerBase::addControllable(const GlobalId& master_id,
   bool res =
     this->createControllable(master_id, cname, entry_id, creation_id,
 			     data_class, entry_label, time_aspect);
-  
+
   if (!res) {
     uncreatables.insert(data_class);
   }

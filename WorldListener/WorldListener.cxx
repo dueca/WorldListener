@@ -33,6 +33,7 @@
 // the standard package for DUSIME, including template source
 #define DO_INSTANTIATE
 #include <dueca.h>
+using namespace std;
 #include <MemberCall2Way.hxx>
 #include <Entity.hxx>
 

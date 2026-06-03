@@ -18,6 +18,8 @@
 #include "../WorldListener/AudioExceptions.hxx"
 
 OPEN_NS_WORLDLISTENER;
+using namespace std;
+using namespace dueca;
 
 PortAudioBufferManager::PortAudioBufferManager()
 {

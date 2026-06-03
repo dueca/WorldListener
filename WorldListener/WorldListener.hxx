@@ -62,9 +62,9 @@ USING_DUECA_NS;
     one entry, to create it use something like:
 
     \code
-    w_observer(getId(), NameSet(getEntity(), "BaseObjectMotion", ""),
-               "BaseObjectMotion", "any label", Channel::Continuous,
-               Channel::OnlyOneEntry),
+    w_observer(getId(), dueca::NameSet(getEntity(), "BaseObjectMotion", ""),
+               "BaseObjectMotion", "any label", dueca::Channel::Continuous,
+               dueca::Channel::OnlyOneEntry),
     \endcode
 
     You can share the observer motion with the ego-motion of the WorldView
@@ -81,19 +81,19 @@ USING_DUECA_NS;
     To create an entry, use something like:
 
     \code
-    w_audio(getId(), NameSet("audio", "AnyAudioClass", ""),
+    w_audio(getId(), dueca::NameSet("audio", "AnyAudioClass", ""),
             "AudioObjectMotion", "name of the sound",
-            eventtype ? Channel::Events : Channel::Continuous,
-            Channel::OneOrMoreEntries, Channel::MixedPacking)
+            eventtype ? dueca::Channel::Events : Channel::Continuous,
+            dueca::Channel::OneOrMoreEntries, dueca::Channel::MixedPacking)
     \endcode
 
     or
 
     \code
-    w_audio(getId(), NameSet("audio", "AnyAudioClass", ""),
+    w_audio(getId(), dueca::NameSet("audio", "AnyAudioClass", ""),
             "AudioObjectFixed", "name of the sound",
-            eventtype ? Channel::Events : Channel::Continuous,
-            Channel::OneOrMoreEntries, Channel::MixedPacking)
+            eventtype ? dueca::Channel::Events : Channel::Continuous,
+            dueca::Channel::OneOrMoreEntries, dueca::Channel::MixedPacking)
     \endcode
 
     By using an AudioObjectMotion object, this entry controls both
@@ -103,7 +103,7 @@ USING_DUECA_NS;
     Note that AudioObjectMotion objects are derived from BaseObjectMotion
     objects. This makes them compatible with WorldView, if you add the
     object. Note that the name of the channel to read for sound objects in
-    the (in the example NameSet("audio", "AnyAudioClass", ""), which
+    the (in the example dueca::NameSet("audio", "AnyAudioClass", ""), which
     gives the AnyAudioClass://audio channel), is configurable. You need to
     configure a new name if you want to share the audio information with
     the WorldView movement information.
@@ -138,7 +138,7 @@ USING_DUECA_NS;
 
     \verbinclude world-listener.scm
  */
-class WorldListener: public SimulationModule
+class WorldListener: public dueca::SimulationModule
 {
   /** self-define the module type, to ease writing the parameter table */
   typedef WorldListener _ThisModule_;
@@ -161,13 +161,13 @@ private: // simulation data
 
 private: // channel access
 
-  /** Channel with position and rates. Position as quaternion */
-  boost::scoped_ptr<ChannelReadToken>  r_own;
+  /** dueca::Channel with position and rates. Position as quaternion */
+  boost::scoped_ptr<dueca::ChannelReadToken>  r_own;
 
-  /** Channel watcher for the other entities */
+  /** dueca::Channel watcher for the other entities */
   typedef std::list<std::shared_ptr<ChannelWatcher> > watcher_list_t;
 
-  /** Channel watchers for the other entities */
+  /** dueca::Channel watchers for the other entities */
   watcher_list_t                       m_others;
 
   /** Flag to remember if the watcher list has been explicitly called */
@@ -180,8 +180,8 @@ private: // channel access
   /** Flag to determine if logging control messages have been sent */
   bool                                 sendlogcontrol;
 
-  /** Channel toke for control of a HDF logger, if applicable */
-  boost::scoped_ptr<ChannelWriteToken> w_logconfig;
+  /** dueca::Channel toke for control of a HDF logger, if applicable */
+  boost::scoped_ptr<dueca::ChannelWriteToken> w_logconfig;
 #endif
 
   /** "Keep running" flag, will not stop sound production when DUECA
@@ -193,22 +193,22 @@ private: // channel access
 
 private: // activity allocation
 
-  /** Callback object for simulation calculation. */
-  Callback<WorldListener>  cb1;
+  /** dueca::Callback object for simulation calculation. */
+  dueca::Callback<WorldListener>  cb1;
 
   /** Activity for simulation calculation. */
-  ActivityCallback      do_calc;
+  dueca::ActivityCallback      do_calc;
 
 public: // class name and trim/parameter tables
   /** Name of the module. */
   static const char* const           classname;
 
   /** Return the parameter table. */
-  static const ParameterTable*       getMyParameterTable();
+  static const dueca::ParameterTable*       getMyParameterTable();
 
 public: // construction and further specification
   /** Constructor. Is normally called from scheme/the creation script. */
-  WorldListener(Entity* e, const char* part, const PrioritySpec& ts);
+  WorldListener(dueca::Entity* e, const char* part, const dueca::PrioritySpec& ts);
 
   /** Continued construction. This is called after all script
       parameters have been read and filled in, according to the
@@ -228,19 +228,19 @@ public: // construction and further specification
   // Delete if not needed!
 
   /** Specify a time specification for the simulation activity. */
-  bool setTimeSpec(const TimeSpec& ts);
+  bool setTimeSpec(const dueca::TimeSpec& ts);
 
   /** Request check on the timing. */
-  bool checkTiming(const vector<int>& i);
+  bool checkTiming(const std::vector<int>& i);
 
   /** Function call that adds an object to the scene. */
-  bool addObject(ScriptCreatable& ava, bool in);
+  bool addObject(dueca::ScriptCreatable& ava, bool in);
 
   /** Function call that sets the listener object. */
-  bool setListener(ScriptCreatable& ava, bool in);
+  bool setListener(dueca::ScriptCreatable& ava, bool in);
 
   /** Set the initial listener position, orientation and speed */
-  bool initialEar(const vector<double>& i);
+  bool initialEar(const std::vector<double>& i);
 
   /** Specify a channel for control of an HDF logger */
   bool controlLogger(const std::string& cname);
@@ -256,14 +256,14 @@ public: // member functions for cooperation with DUECA
   bool isPrepared();
 
   /** start responsiveness to input data. */
-  void startModule(const TimeSpec &time);
+  void startModule(const dueca::TimeSpec &time);
 
   /** stop responsiveness to input data. */
-  void stopModule(const TimeSpec &time);
+  void stopModule(const dueca::TimeSpec &time);
 
 public: // the member functions that are called for activities
   /** the method that implements the main calculation. */
-  void doCalculation(const TimeSpec& ts);
+  void doCalculation(const dueca::TimeSpec& ts);
 };
 
 #endif

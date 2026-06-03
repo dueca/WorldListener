@@ -20,6 +20,8 @@
 #include <debug.h>
 
 OPEN_NS_WORLDLISTENER;
+using namespace std;
+using namespace dueca;
 
 PortAudioObject::PortAudioObject(const WorldDataSpec& spec) :
   channel(0),
@@ -72,7 +74,7 @@ bool PortAudioObject::initSound(PortAudioListener* master)
       W_MOD("cannot init '" << spec.name << "' " << e.what());
       return false;
     }
-    
+
     if (spec.coordinates.size() >= 1) {
       channel = unsigned(spec.coordinates[0]);
     }

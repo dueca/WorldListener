@@ -27,7 +27,7 @@ OPEN_NS_WORLDLISTENER;
 
 /** Create an PortAudio backend for sound generation
 
-    This class has been derived from the ScriptCreatable base class,
+    This class has been derived from the dueca::ScriptCreatable base class,
     and has a (scheme) script command to create it and optionally add
     parameters.
 
@@ -94,7 +94,7 @@ public: // construction and further specification
   ~PortAudioListener_DUECA();
 
   /** Obtain a pointer to the parameter table. */
-  static const ParameterTable* getParameterTable();
+  static const dueca::ParameterTable* getParameterTable();
 
 public:
   /** Default script linkage. */

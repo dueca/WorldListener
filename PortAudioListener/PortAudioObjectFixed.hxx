@@ -20,8 +20,8 @@ OPEN_NS_WORLDLISTENER;
 class PortAudioObjectFixed: public PortAudioObject
 {
 protected:
-  /** Channel read token for audio control */
-  boost::scoped_ptr<ChannelReadToken>      r_audio;
+  /** dueca::Channel read token for audio control */
+  boost::scoped_ptr<dueca::ChannelReadToken>      r_audio;
 
   /** Final, adjusted volume */
   float                                    volume;
@@ -44,14 +44,14 @@ public:
 
   /** Connect to a channel entry
       @param master_id ID for opening a channel reader
-      @param cname     Channel with object data
+      @param cname     dueca::Channel with object data
       @param entry_id  Entry in the channel */
-  virtual void connect(const GlobalId& master_id, const NameSet& cname,
-		       entryid_type entry_id,
-		       Channel::EntryTimeAspect time_aspect) override;
+  virtual void connect(const dueca::GlobalId& master_id, const dueca::NameSet& cname,
+		       dueca::entryid_type entry_id,
+		       dueca::Channel::EntryTimeAspect time_aspect) override;
 
   /** Play, update, recalculate, etc. */
-  virtual void iterate(const TimeSpec& ts,
+  virtual void iterate(const dueca::TimeSpec& ts,
                        const BaseObjectMotion& base) override;
 
   /** Pass data for playing on the card. */
