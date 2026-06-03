@@ -121,19 +121,19 @@ public: // construction and further specification
       \param entry_label Additional data
       \returns      Pointer to the newly created object. */
   bool createControllable
-  (const GlobalId& master_id, const NameSet& cname, entryid_type entry_id,
+  (const dueca::GlobalId& master_id, const dueca::NameSet& cname, dueca::entryid_type entry_id,
    uint32_t creation_id,
    const std::string& data_class, const std::string& entry_label,
-   Channel::EntryTimeAspect time_aspect);
+   dueca::Channel::EntryTimeAspect time_aspect);
 
   /** Remove a controllable */
   void removeControllable(uint32_t creation_id);
   
   /** read/process all sources. */
-  void iterate(const TimeSpec& ts);
+  void iterate(const dueca::TimeSpec& ts);
 
   /** reset/process all sources. */
-  void silence(const TimeSpec& ts);
+  void silence(const dueca::TimeSpec& ts);
 
   /** Add a constant sound source */
   void addConstantSource(boost::intrusive_ptr<OpenALObject> op);

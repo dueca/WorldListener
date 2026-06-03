@@ -37,6 +37,7 @@
 
 
 USING_DUECA_NS;
+using namespace std;
 
 OPEN_NS_WORLDLISTENER;
 

@@ -33,7 +33,7 @@ class OpenALXMLReader;
 
 /** Create an OpenAL backend for sound generation
 
-    This class has been derived from the ScriptCreatable base class,
+    This class has been derived from the dueca::ScriptCreatable base class,
     and has a (scheme) script command to create it and optionally add
     parameters.
 

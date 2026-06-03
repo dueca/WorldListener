@@ -3,4 +3,5 @@
 # specify these with the .dco extension, examples:
 # WorldListener/comm-objects/MyDataObject.dco
 # Generic/comm-objects/PrimaryControls.dco
-WorldListener/comm-objects/RecordingProgress.dco
+#WorldListener/comm-objects/RecordingProgress.dco #  Removed for Policy: 'home-dco':'24-001'
+comm-objects/RecordingProgress.dco  # Added for Policy: 'home-dco':'24-001'

@@ -15,6 +15,8 @@
 #include <debug.h>
 
 OPEN_NS_WORLDLISTENER;
+using namespace std;
+using namespace dueca;
 
 OpenALObjectMoving::OpenALObjectMoving(const WorldDataSpec &spec) :
   OpenALObject(spec)

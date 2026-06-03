@@ -16,6 +16,8 @@
 #include <debug.h>
 
 OPEN_NS_WORLDLISTENER;
+using namespace std;
+using namespace dueca;
 
 PortAudioObjectFixed::PortAudioObjectFixed(const WorldDataSpec& spec) :
   PortAudioObject(spec),

@@ -34,9 +34,9 @@
 // #define I_MOD
 #include <debug.h>
 
-USING_DUECA_NS;
-
 OPEN_NS_WORLDLISTENER;
+using namespace std;
+using namespace dueca;
 
 // Parameters to be inserted
 const ParameterTable *OpenALListener_DUECA::getParameterTable()
@@ -78,7 +78,7 @@ const ParameterTable *OpenALListener_DUECA::getParameterTable()
       "(obsolete, use add-object-class-data)" },
 
     { "add-object-class-data",
-      new MemberCall<_ThisObject_, std::vector<string>>(
+      new MemberCall<_ThisObject_, std::vector<std::string>>(
         &_ThisObject_::addObjectClassData),
       "Create a new class (type) of simple objects, i.e. those that can be\n"
       "represented by one or more sound files. Specify the following\n"
@@ -485,5 +485,5 @@ SCM_FEATURES_NOIMPINH(worldlistener::OpenALListener_DUECA, ScriptCreatable,
 // Make a CoreCreator object for this module, the CoreCreator
 // will check in with the scheme-interpreting code, and enable the
 // creation of objects of this type
-static CoreCreator<worldlistener::OpenALListener_DUECA>
+static dueca::CoreCreator<worldlistener::OpenALListener_DUECA>
   a(worldlistener::OpenALListener_DUECA::getParameterTable(), "OpenALListener");

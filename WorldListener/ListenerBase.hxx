@@ -65,25 +65,25 @@ public: /* management of objects in the world */
 
   /** Insert another controlled object */
   void addControllable
-  (const GlobalId& master_id, const NameSet& cname, entryid_type entry_id,
+  (const dueca::GlobalId& master_id, const dueca::NameSet& cname, dueca::entryid_type entry_id,
    uint32_t creation_id, const std::string data_class,
-   const std::string entry_label, Channel::EntryTimeAspect time_aspect);
+   const std::string entry_label, dueca::Channel::EntryTimeAspect time_aspect);
 
   /** Create a controllable object. Object creation depends on class of 
       data supplied, further init may rely on fist data entering. */
   virtual bool createControllable
-  (const GlobalId& master_id, const NameSet& cname, entryid_type entry_id,
+  (const dueca::GlobalId& master_id, const dueca::NameSet& cname, dueca::entryid_type entry_id,
    uint32_t creation_id, const std::string& data_class,
-   const std::string& entry_label, Channel::EntryTimeAspect time_aspect) = 0;
+   const std::string& entry_label, dueca::Channel::EntryTimeAspect time_aspect) = 0;
   
   /** Remove a controllable */
   virtual void removeControllable(uint32_t creation_id) = 0;
   
   /** read all controllables. */
-  virtual void iterate(const TimeSpec& ts) = 0;
+  virtual void iterate(const dueca::TimeSpec& ts) = 0;
 
   /** stop playing. */
-  virtual void silence(const TimeSpec& ts) = 0;
+  virtual void silence(const dueca::TimeSpec& ts) = 0;
 };
 
 CLOSE_NS_WORLDLISTENER;

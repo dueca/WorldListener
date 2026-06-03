@@ -79,7 +79,7 @@ public:
   virtual bool initSound(OpenALListener* master);
   
   /** Play, update, recalculate, etc. */
-  virtual void iterate(const TimeSpec& ts, const BaseObjectMotion& base);
+  virtual void iterate(const dueca::TimeSpec& ts, const BaseObjectMotion& base);
 
   /** Stop, reset, etc. */
   virtual void silence();

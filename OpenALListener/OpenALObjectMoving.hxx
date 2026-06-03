@@ -19,8 +19,8 @@ OPEN_NS_WORLDLISTENER;
 
 class OpenALObjectMoving: public OpenALObject
 {
-  /** Channel read token for audio control */
-  boost::scoped_ptr<ChannelReadToken>     r_audio;
+  /** dueca::Channel read token for audio control */
+  boost::scoped_ptr<dueca::ChannelReadToken>     r_audio;
 
 public:
   /** Constructor
@@ -40,11 +40,11 @@ public:
   
   /** Connect to a channel entry 
       @param master_id ID for opening a channel reader
-      @param cname     Channel with object data
+      @param cname     dueca::Channel with object data
       @param entry_id  Entry in the channel */
-  void connect(const GlobalId& master_id, const NameSet& cname,
-               entryid_type entry_id,
-               Channel::EntryTimeAspect time_aspect);
+  void connect(const dueca::GlobalId& master_id, const dueca::NameSet& cname,
+               dueca::entryid_type entry_id,
+               dueca::Channel::EntryTimeAspect time_aspect);
 
 #if 0
   /** Initialize the sound
@@ -57,7 +57,7 @@ public:
 #endif
   
   /** Play, update, recalculate, etc. */
-  void iterate(const TimeSpec& ts, const BaseObjectMotion& base);
+  void iterate(const dueca::TimeSpec& ts, const BaseObjectMotion& base);
 
 #if 0
   /** Stop, reset, etc. */

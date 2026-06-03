@@ -21,6 +21,7 @@
 // the standard package for DUSIME, including template source
 #define DO_INSTANTIATE
 #include <dueca.h>
+using namespace std;
 
 // include the debug writing header, by default, write warning and
 // error messages

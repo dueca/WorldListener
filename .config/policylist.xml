@@ -1,3 +1,42 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <policies xmlns="https://dueca.tudelft.nl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://dueca.tudelft.nl policylist.xsd">
-<policy date="2021-07-02 17:43" id="21-001"><file>WorldListener/ControlMotion/comm-objects.lst</file></policy></policies>
+  <policy date="2021-07-02 17:43" id="21-001">
+    <file>WorldListener/ControlMotion/comm-objects.lst</file>
+  </policy>
+  <policy date="2026-06-03 16:27" ignored="1" id="21-004"/>
+  <policy date="2026-06-03 16:28" id="24-001">
+    <file>/home/repa/gdapps/WorldListener/WorldListener/AudioTestGui/comm-objects.lst</file>
+    <file>/home/repa/gdapps/WorldListener/WorldListener/ControlMotion/comm-objects.lst</file>
+    <file>/home/repa/gdapps/WorldListener/WorldListener/OpenALListener/comm-objects.lst</file>
+    <file>/home/repa/gdapps/WorldListener/WorldListener/PortAudioListener/comm-objects.lst</file>
+    <file>/home/repa/gdapps/WorldListener/WorldListener/SoundRecorder/comm-objects.lst</file>
+  </policy>
+  <policy date="2026-06-03 16:28" id="26-001">
+    <file>ControlMotion/MotionControl.hxx</file>
+    <file>WorldListener/WorldListener.hxx</file>
+  </policy>
+  <policy date="2026-06-03 16:28" id="26-002">
+    <file>AudioTestGui/AudioTestGui.hxx</file>
+    <file>ControlMotion/MotionControl.hxx</file>
+    <file>OpenALListener/OpenALListener.hxx</file>
+    <file>OpenALListener/OpenALObject.hxx</file>
+    <file>OpenALListener/OpenALObjectMoving.hxx</file>
+    <file>OpenALListener/OpenALListener_DUECA.hxx</file>
+    <file>OpenALListener/OpenALObjectFixed.hxx</file>
+    <file>PortAudioListener/PortAudioListener.hxx</file>
+    <file>PortAudioListener/PortAudioObject.hxx</file>
+    <file>PortAudioListener/PortAudioObjectFixed.hxx</file>
+    <file>PortAudioListener/PortAudioListener_DUECA.hxx</file>
+    <file>PortAudioListener/PortAudioMultiObject.hxx</file>
+    <file>SoundRecorder/SoundRecorder.hxx</file>
+    <file>WorldListener/ListenerBase.hxx</file>
+    <file>WorldListener/WorldObjectBase.hxx</file>
+    <file>WorldListener/WorldListener.hxx</file>
+  </policy>
+  <policy date="2026-06-03 16:28" id="26-003">
+    <file>AudioTestGui/AudioTestGui.cxx</file>
+    <file>ControlMotion/MotionControl.cxx</file>
+    <file>SoundRecorder/SoundRecorder.cxx</file>
+    <file>WorldListener/WorldListener.cxx</file>
+  </policy>
+</policies>

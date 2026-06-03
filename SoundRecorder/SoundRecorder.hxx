@@ -36,7 +36,7 @@ USING_DUECA_NS;
 
     \verbinclude open-al-recorder.scm
 */
-class SoundRecorder: public SimulationModule
+class SoundRecorder: public dueca::SimulationModule
 {
   /** self-define the module type, to ease writing the parameter table */
   typedef SoundRecorder _ThisModule_;
@@ -89,32 +89,32 @@ private: // simulation data
   bool single_file;
 
   /** Previous SimState for detecting state changes */
-  SimulationState prev_SimulationState;
+  dueca::SimulationState prev_SimulationState;
   
 private: // channel access
   /** Information on recording progress */
-  ChannelWriteToken   w_progress;
+  dueca::ChannelWriteToken   w_progress;
 
 private: // activity allocation
   /** Check-up on the state of recording */
-  PeriodicAlarm        myclock;
+  dueca::PeriodicAlarm        myclock;
 
-  /** Callback object for simulation calculation. */
-  Callback<SoundRecorder>  cb1;
+  /** dueca::Callback object for simulation calculation. */
+  dueca::Callback<SoundRecorder>  cb1;
 
   /** Activity for simulation calculation. */
-  ActivityCallback      do_calc;
+  dueca::ActivityCallback      do_calc;
 
 public: // class name and trim/parameter tables
   /** Name of the module. */
   static const char* const           classname;
 
   /** Return the parameter table. */
-  static const ParameterTable*       getMyParameterTable();
+  static const dueca::ParameterTable*       getMyParameterTable();
 
 public: // construction and further specification
   /** Constructor. Is normally called from scheme/the creation script. */
-  SoundRecorder(Entity* e, const char* part, const PrioritySpec& ts);
+  SoundRecorder(dueca::Entity* e, const char* part, const dueca::PrioritySpec& ts);
 
   /** Continued construction. */
   bool complete();
@@ -128,7 +128,7 @@ public: // construction and further specification
   // Delete if not needed!
 
   /** Specify a time specification for the simulation activity. */
-  bool setTimeSpec(const TimeSpec& ts);
+  bool setTimeSpec(const dueca::TimeSpec& ts);
 
   /** Request check on the timing. */
   bool checkTiming(const std::vector<int>& i);
@@ -138,14 +138,14 @@ public: // member functions for cooperation with DUECA
   bool isPrepared();
 
   /** start responsiveness to input data. */
-  void startModule(const TimeSpec &time);
+  void startModule(const dueca::TimeSpec &time);
 
   /** stop responsiveness to input data. */
-  void stopModule(const TimeSpec &time);
+  void stopModule(const dueca::TimeSpec &time);
 
 public: // the member functions that are called for activities
   /** the method that implements the main calculation. */
-  void doCalculation(const TimeSpec& ts);
+  void doCalculation(const dueca::TimeSpec& ts);
 
 public: // callback with new audio data
 

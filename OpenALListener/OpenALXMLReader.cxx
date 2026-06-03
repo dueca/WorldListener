@@ -17,6 +17,8 @@
 #include <exception>
 
 namespace worldlistener {
+using namespace std;
+using namespace dueca;
 
 struct error_reading_openal_xml : public std::exception
 {
